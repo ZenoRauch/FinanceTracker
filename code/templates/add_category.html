@@ -1,17 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+  {% block content %}
+    {% include 'sub/head.html' %}
 
-<head>
-    <title>Add Category</title>
-</head>
+    <body class="sb-nav-fixed">
+      {% include 'sub/navbar.html' %}
+      <div id="layoutSidenav">
+        {% include 'sub/sidenav.html' %}
+        <div id="layoutSidenav_content">
+          <main>
+            <div class="container-fluid px-4">
+              <h1 class="mt-4">Add Category</h1>
+              <ol class="breadcrumb mb-4">
+                <li class="breadcrumb-item active">Add New Category</li>
+              </ol>
 
-<body>
-    <h1>Add Category</h1>
-    <form method="POST">
-        <label for="name">Category Name:</label>
-        <input type="text" name="name" required>
-        <button type="submit">Add Category</button>
-    </form>
-</body>
-
+              <!-- Category form -->
+              <div class="card mb-4">
+                <div class="card-header">
+                  <i class="fas fa-plus"></i>
+                  Add a new category
+                </div>
+                <div class="card-body">
+                  <form method="POST" action="{{ url_for('main.add_category') }}">
+                    <div class="form-group">
+                      <label for="name">Category Name</label>
+                      <input type="text" class="form-control" id="name" name="name" required />
+                    </div>
+                    <br />
+                    <button type="submit" class="btn btn-primary">Add Category</button>
+                    <a href="{{ url_for('main.list_categories') }}" class="btn btn-secondary">Cancel</a>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </main>
+        </div>
+      </div>
+    </body>
+  {% endblock %}
 </html>

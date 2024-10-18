@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% block content %}
+    {% include 'sub/head.html' %}
+
+    <body class="sb-nav-fixed">
+      {% include 'sub/navbar.html' %}
+      <div id="layoutSidenav">
+        {% include 'sub/sidenav.html' %}
+        <div id="layoutSidenav_content">
+          <main>
+            <div class="card mb-4">
+              <div class="card-header">
+                <i class="fas fa-plus"></i>
+                Add a new transaction
+              </div>
+              <div class="card-body">
+                <form method="POST" action="{{ url_for('main.add_transaction') }}">
+                  <div class="form-group">
+                    <label for="date">Transaction Date</label>
+                    <input type="date" class="form-control" id="date" name="date" required />
+                  </div>
+                  <br />
+                  <div class="form-group">
+                    <label for="amount">Amount</label>
+                    <input type="number" class="form-control" id="amount" name="amount" step="0.01" required />
+                  </div>
+                  <br />
+                  <div class="form-group">
+                    <label for="description">Description</label>
+                    <input type="text" class="form-control" id="description" name="description" />
+                  </div>
+                  <br />
+                  <div class="form-group">
+                    <label for="account_id">Account</label>
+                    <select class="form-control" id="account_id" name="account_id" required>
+                      <option value="" disabled selected>Select an Account</option>
+                      {% for account in accounts %}
+                        <option value="{{ account.accountid }}">{{ account.bank }} - {{ account.name }}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                  <br />
+                  <div class="form-group">
+                    <label for="category_id">Category</label>
+                    <select class="form-control" id="category_id" name="category_id" required>
+                      <option value="" disabled selected>Select a Category</option>
+                      {% for category in categories %}
+                        <option value="{{ category.categoryid }}">{{ category.name }}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                  <br />
+                  <div class="form-group">
+                    <label for="paymentforperiod">Payment for Period</label>
+                    <input type="date" class="form-control" id="paymentforperiod" name="paymentforperiod" />
+                  </div>
+                  <br />
+                  <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="isprepayment" name="isprepayment" />
+                    <label class="form-check-label" for="isprepayment">Is Prepayment?</label>
+                  </div>
+                  <br />
+                  <button type="submit" class="btn btn-primary">Add Transaction</button>
+                  <a href="{{ url_for('main.list_transactions') }}" class="btn btn-secondary">Cancel</a>
+                </form>
+              </div>
+            </div>
+          </main>
+        </div>
+      </div>
+    </body>
+  {% endblock %}
+</html>

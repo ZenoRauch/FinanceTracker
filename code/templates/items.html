@@ -1,69 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
-{% block content %}
-{% include 'sub/head.html' %}
+  {% block content %}
+    {% include 'sub/head.html' %}
 
-
-
-<body class="sb-nav-fixed">
-    {% include 'sub/navbar.html' %}
-    <div id="layoutSidenav">
+    <body class="sb-nav-fixed">
+      {% include 'sub/navbar.html' %}
+      <div id="layoutSidenav">
         {% include 'sub/sidenav.html' %}
         <div id="layoutSidenav_content">
-            <main>
-                <ul>
-                    {% if type == "Accounts"%}
-                    <div class="container-fluid px-4">
-                        <h1 class="mt-4">Overview</h1>
-                        <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">{{type}}</li>
-                        </ol>
-                        <div class="row">
-                            {% for account in items %}
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg-primary text-white mb-4">
-                                    <div class="card-body">
-                                        <h5 class="card-title">{{account.bank}} : {{account.name}}</h5>
-                                        <p class="card-text">Balance: </p>
-                                        <a href="#" class="btn btn-primary">See transactions</a>
-                                        <a href="#" class="btn btn-primary">Edit Account</a>
-                                    </div>
-                                </div>
-                            </div>
-                            {% endfor %}
+          <main>
+            <ul>
+              <!-- Account -->
+              {% if type == 'Accounts' %}
+                <div class="container-fluid px-4">
+                  <h1 class="mt-4">Overview <a href="{{ url_for('main.add_account') }}"><i class="fas fa-plus"></i></a></h1>
+                  <ol class="breadcrumb mb-4">
+                    <li class="breadcrumb-item active">{{ type }}</li>
+                  </ol>
+                  <div class="row">
+                    {% for account in items %}
+                      <div class="col-xl-3 col-md-6">
+                        <div class="card bg-primary text-white mb-4">
+                          <div class="card-body">
+                            <h5 class="card-title">{{ account.bank }} : {{ account.name }}</h5>
+                            <p class="card-text">Balance:</p>
+                            <a href="#" class="btn btn-primary">See transactions</a>
+                            <a href="{{ url_for('main.edit_account', id=account.accountid) }}" class="btn btn-primary">Edit Account</a>
+                          </div>
                         </div>
-                    </div>
-                    {% elif type == "Categories"%}
-                    <div class="container-fluid px-4">
-                        <h1 class="mt-4">Overview <a href="{{ url_for('add_category') }}">+</a></h1>
-                        <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">{{type}}</li>
-                        </ol>
-                        <div class="row">
-                            {% for category in items %}
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg-primary text-white mb-4">
-                                    <div class="card-body">
-                                        <h5 class="card-title">{{category.name}}</h5>
-                                        <p class="card-text">Balance: </p>
-                                        <a href="#" class="btn btn-primary">See transactions</a>
-                                        <a href="{{ url_for('edit_category', id=category.categoryid) }}"
-                                            class="btn btn-primary">Edit Category</a>
-                                    </div>
-                                </div>
-                            </div>
-                            {% endfor %}
+                      </div>
+                    {% endfor %}
+                  </div>
+                </div>
+                <!-- Category -->
+              {% elif type == 'Categories' %}
+                <div class="container-fluid px-4">
+                  <h1 class="mt-4">Overview <a href="{{ url_for('main.add_category') }}"><i class="fas fa-plus"></i></a></h1>
+                  <ol class="breadcrumb mb-4">
+                    <li class="breadcrumb-item active">{{ type }}</li>
+                  </ol>
+                  <div class="row">
+                    {% for category in items %}
+                      <div class="col-xl-3 col-md-6">
+                        <div class="card bg-primary text-white mb-4">
+                          <div class="card-body">
+                            <h5 class="card-title">{{ category.name }}</h5>
+                            <p class="card-text">Balance:</p>
+                            <a href="#" class="btn btn-primary">See transactions</a>
+                            <a href="{{ url_for('main.edit_category', id=category.categoryid) }}" class="btn btn-primary">Edit Category</a>
+                          </div>
                         </div>
-                    </div>
-                    {% endif %}
-
-                </ul>
-
-            </main>
+                      </div>
+                    {% endfor %}
+                  </div>
+                </div>
+                <!-- Transaction -->
+              {% elif type == 'Transactions' %}
+                <div class="container-fluid px-4">
+                  <h1 class="mt-4">Overview <a href="{{ url_for('main.add_transaction') }}"><i class="fas fa-plus"></i></a></h1>
+                  <ol class="breadcrumb mb-4">
+                    <li class="breadcrumb-item active">{{ type }}</li>
+                  </ol>
+                  <div class="row">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th scope="col">Date</th>
+                          <th scope="col">Amount</th>
+                          <th scope="col">Account</th>
+                          <th scope="col">Category</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for transaction in items %}
+                          <tr>
+                            <th scope="row"><a href="{{ url_for('main.edit_transaction', id=transaction.transactionid) }}">{{ transaction.date }}</a></th>
+                            <td>{{ transaction.amount }}</td>
+                            <td>{{ transaction.accountid }}</td>
+                            <td>{{ transaction.categoryid }}</td>
+                          </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <!-- Budget -->
+              {% elif type == 'Budgets' %}
+                <div class="container-fluid px-4">
+                  <h1 class="mt-4">Overview <a href="{{ url_for('main.add_budget') }}"><i class="fas fa-plus"></i></a></h1>
+                  <ol class="breadcrumb mb-4">
+                    <li class="breadcrumb-item active">{{ type }}</li>
+                  </ol>
+                  <div class="row">
+                    {% for budget in items %}
+                      <div class="col-xl-3 col-md-6">
+                        <div class="card bg-primary text-white mb-4">
+                          <div class="card-body">
+                            <h5 class="card-title">Budget {{ budget.startdate }} - {{ budget.enddate }}</h5>
+                          </div>
+                        </div>
+                      </div>
+                    {% endfor %}
+                  </div>
+                </div>
+              {% endif %}
+            </ul>
+          </main>
         </div>
-</body>
-
-
-{% endblock %}
-
+      </div>
+    </body>
+  {% endblock %}
 </html>

@@ -4,8 +4,8 @@ from .routes import main
 
 
 def create_app():
-    app = Flask(__name__, template_folder="../templates")
-
+    app = Flask(__name__, template_folder="../templates", static_folder="../static")
+    
     # Database configuration (assuming MariaDB with root user and no password)
     app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:@localhost/financetracker'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False

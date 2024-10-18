@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% block content %}
+    {% include 'sub/head.html' %}
+
+    <body class="sb-nav-fixed">
+      {% include 'sub/navbar.html' %}
+      <div id="layoutSidenav">
+        {% include 'sub/sidenav.html' %}
+        <div id="layoutSidenav_content">
+          <main>
+            <div class="container-fluid px-4">
+              <h1 class="mt-4">Add Account</h1>
+              <ol class="breadcrumb mb-4">
+                <li class="breadcrumb-item active">Add New Account</li>
+              </ol>
+
+              <!-- Account form -->
+              <div class="card mb-4">
+                <div class="card-header">
+                  <i class="fas fa-plus"></i>
+                  Add a new Account
+                </div>
+                <div class="card-body">
+                  <form method="POST" action="{{ url_for('main.add_account') }}">
+                    <div class="form-group">
+                      <label for="name">Account Name</label>
+                      <input type="text" class="form-control" id="name" name="name" required />
+                      <label for="name">Bank Name</label>
+                      <input type="text" class="form-control" id="bank" name="bank" required />
+                    </div>
+                    <br />
+                    <button type="submit" class="btn btn-primary">Add Account</button>
+                    <a href="{{ url_for('main.list_accounts') }}" class="btn btn-secondary">Cancel</a>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </main>
+        </div>
+      </div>
+    </body>
+  {% endblock %}
+</html>

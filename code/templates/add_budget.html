@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+{% block content %}
+{% include 'sub/head.html' %}
+
+<body class="sb-nav-fixed">
+    {% include 'sub/navbar.html' %}
+    <div id="layoutSidenav">
+        {% include 'sub/sidenav.html' %}
+        <div id="layoutSidenav_content">
+            <main>
+
+            </main>
+        </div>
+    </div>
+</body>
+
+
+{% endblock %}
+
+</html>

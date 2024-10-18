@@ -7,10 +7,6 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                     Dashboard
                 </a>
-                <a class="nav-link" href="/index2">
-                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                    2. Dashboard
-                </a>
                 <div class="sb-sidenav-menu-heading">Operative</div>
                 <!--accounts-->
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseAccounts"
@@ -52,35 +48,36 @@
                     <nav class="sb-sidenav-menu-nested nav">
                         <a class="nav-link" href="/transactions">Overview</a>
                         <a class="nav-link" href="/transaction/add">Add</a>
+                        <a class="nav-link" href="#">Internal Transactions</a>
                     </nav>
                 </div>
                 <div class="sb-sidenav-menu-heading">Budget</div>
                 <!--Budget-->
-                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseCategories"
-                    aria-expanded="false" aria-controls="#collapseCategories">
+                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseBudgets"
+                    aria-expanded="false" aria-controls="#collapseBudgets">
                     <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                     Budget
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
-                <div class="collapse" id="collapseCategories" aria-labelledby="headingOne"
+                <div class="collapse" id="collapseBudgets" aria-labelledby="headingOne"
                     data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="/categories">Overview</a>
-                        <a class="nav-link" href="/category/add">Add</a>
+                        <a class="nav-link" href="/budgets">Overview</a>
+                        <a class="nav-link" href="/budget/add">Add</a>
                     </nav>
                 </div>
                 <!--BudgetEntry-->
-                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseTransactions"
-                    aria-expanded="false" aria-controls="#collapseTransactions">
+                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseBudgetEntries"
+                    aria-expanded="false" aria-controls="#collapseBudgetEntries">
                     <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                     BudgetEntry
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
-                <div class="collapse" id="collapseTransactions" aria-labelledby="headingOne"
+                <div class="collapse" id="collapseBudgetEntries" aria-labelledby="headingOne"
                     data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="/transactions">Overview</a>
-                        <a class="nav-link" href="/transaction/add">Add</a>
+                        <a class="nav-link" href="/budgetentries">Overview</a>
+                        <a class="nav-link" href="/budgetentry/add">Add</a>
                     </nav>
                 </div>
             </div>
