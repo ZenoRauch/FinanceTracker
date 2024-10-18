@@ -1,13 +1,21 @@
-{% extends 'base.html' %}
-
-{% block title %}Home{% endblock %}
-
+<!DOCTYPE html>
+<html lang="en">
 {% block content %}
-<div class="jumbotron">
-    <h1 class="display-4">Welcome to My Flask App!</h1>
-    <p class="lead">This is a simple application using Flask and Bootstrap.</p>
-    <hr class="my-4">
-    <p>Use the navigation bar to explore other sections.</p>
-    <a class="btn btn-primary btn-lg" href="/categories" role="button">View Categories</a>
-</div>
+{% include 'sub/head.html' %}
+
+<body class="sb-nav-fixed">
+    {% include 'sub/navbar.html' %}
+    <div id="layoutSidenav">
+        {% include 'sub/sidenav.html' %}
+        <div id="layoutSidenav_content">
+            <main>
+
+            </main>
+        </div>
+    </div>
+</body>
+
+
 {% endblock %}
+
+</html>
